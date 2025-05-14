@@ -8,10 +8,14 @@ from flask_login import UserMixin
 class User(db.Model, UserMixin):
     """User model to store user credentials"""
     id = db.Column(db.Integer, primary_key=True)
-    fullname= db.Column(db.String(100))
+    first_name= db.Column(db.String(100), nullable= False)
+    last_name = db.Column(db.String(100), nullable= False)
     username= db.Column(db.String(150), unique= True, nullable= False)
+    gender = db.Column(db.String(20))
+    phone = db.Column(db.String(20), unique= True)
+    email = db.Column(db.String(200), unique= True, nullable= False)
+    date_of_birth= db.Column(db.Date)
     password_hash = db.Column(db.String(200), nullable=False)
-    email = db.Column(db.String(200), unique=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
